@@ -1,0 +1,31 @@
+// Styling for the cdo section
+#cdo {
+  p {
+    text-align: justify;
+  }
+  b {
+    color: $gray-700;
+  }
+  br {
+    display: block;
+  }
+  h3.section-subheading {
+    margin-bottom: 50px;
+  }
+  .smaller {
+    font-size: 0.9em;
+  }
+  .cdoGallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #carouselExampleIndicators {
+    max-width: 540px;
+  }
+}
+
+.carousel-item img {
+  object-fit: cover;
+  height: 350px;
+}

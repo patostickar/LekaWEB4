@@ -1,0 +1,143 @@
+// Styling for the contact section
+#contact {
+  background-color: $gray-900;
+
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-attachment: fixed;
+
+  .flex {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  
+  .vl {
+    display: none;
+  }
+  
+  h3,
+  p,
+  .section-heading {
+    color: $white;
+  }
+  
+  .form-group {
+    position: relative;
+  }
+  p.help-block {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 600;
+    left: 20px;
+    ul {
+      list-style-type: none;
+    }
+  }
+
+  h3 {
+    @include body-font;
+  }
+  .contact {
+    margin-top: -30px;
+    margin-bottom: 30px;
+    text-align: center;
+    p {
+      font-size: 22px;
+      margin-bottom: 0.3em;
+    }
+    .email {
+      font-size: 20px;
+    }
+    .fas, .fab{
+      font-size: 25px;
+      margin: 10px 20px;
+      padding-bottom: 10px;
+      color: $white;
+    }
+    .h3ToHide {
+      display: none;
+    }
+  }
+  .form-group {
+    margin-bottom: 25px;
+    input,
+    textarea {
+      padding: 20px;
+    }
+    input.form-control {
+      height: auto;
+    }
+    textarea.form-control {
+      height: 248px;
+    }
+  }
+  .form-control:focus {
+    border-color: $primary;
+    box-shadow: none;
+  }
+  ::-webkit-input-placeholder {
+    font-weight: 700;
+    color: $gray-400;
+    @include heading-font;
+  }
+  :-moz-placeholder {
+    font-weight: 700;
+    color: $gray-400;
+    @include heading-font;
+  }
+  ::-moz-placeholder {
+    font-weight: 700;
+    color: $gray-400;
+    @include heading-font;
+  }
+  :-ms-input-placeholder {
+    font-weight: 700;
+    color: $gray-400;
+    @include heading-font;
+  }
+}
+
+@media (min-width: 992px) {
+  #contact {
+    h2 {
+      font-size: 50px;
+    }
+    .contact {
+      text-align: left;
+      margin-top: 0px;
+      .email {
+        font-size: 15px;
+      }
+      .brToHide {
+        display: none;
+      }
+      .vl {
+        border-left: 2px solid white;
+        height: 248px;
+        position: absolute;
+        left: 0;
+        display: block;
+      }
+      .h3ToHide {
+        display: block;
+      }
+    }
+    .flex {
+      flex-direction: row;
+    }
+  }
+}
+@media (min-width: 1200px) {
+  #contact {
+    .contact {
+      .email {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+#contact.lazy-bg-loaded {
+  background-image: url("../img/contact-image-min4.webp");
+}

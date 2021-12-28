@@ -1,0 +1,60 @@
+// Styling for the masthead
+header.masthead {
+  text-align: center;
+  color: white;
+  background-image: url("../img/fondo1.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  filter: grayscale(90%);
+  .intro-text {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    .intro-lead-in {
+      font-size: 30px;
+      line-height: 36px;
+      padding: 25px 0px;
+      font-family: "Oleo Script";
+    }
+    .intro-heading {
+      h1 {
+        font-size: 60px;
+        font-weight: 700;
+        line-height: 60px;
+        margin-bottom: 25px;
+        @include heading-font;
+      }
+    }
+  }
+}
+@media (min-width: 768px) {
+  header.masthead {
+    .intro-text {
+      padding-top: 250px;
+      padding-bottom: 200px;
+      .intro-lead-in {
+        font-size: 45px;
+        line-height: 40px;
+        padding: 0px 0px 25px 0px;
+        margin-bottom: 25px;
+      }
+      .intro-heading {
+        h1 {
+          font-size: 75px;
+          font-weight: 700;
+          line-height: 75px;
+          margin-bottom: 50px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 992px) {
+  .brToShow {
+    display: none;
+  }
+}

@@ -1,0 +1,30 @@
+.banner {
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+  width: 100%;
+  padding: 22vh 0%;
+  height: 0;
+}
+
+@media (orientation: landscape) {
+  .banner {
+    background-attachment: fixed;
+  }
+}
+
+@media (orientation: portrait) {
+  .banner {
+    background-attachment: contain;
+  }
+}
+
+.banner.lazy-bg-loaded {
+  background-image: url("../img/banner.webp");
+}
+
+@media (min-width: 1200px) {
+  .banner {
+    padding: 35vh 0%;
+  }
+}

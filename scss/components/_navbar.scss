@@ -1,0 +1,77 @@
+// Styling for the navbar
+#mainNav {
+  background-color: $gray-900;
+  .navbar-toggler {
+    font-size: 28px;
+    right: 0;
+    padding: 0px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    border: 0;
+    // background-color: rgba(255, 64, 64, 0.8);
+    @include heading-font;
+  }
+  .navbar-brand {
+    .sml-logo {
+      width: 215px;
+      -webkit-box-shadow: 0px 0px 20px 4px rgba(255, 0, 0, 0.356);
+      box-shadow: 0px 0px 20px 4px rgba(255, 0, 0, 0.356);
+    }
+  }
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        font-size: 90%;
+        font-weight: 400;
+        padding: 0.75em 0;
+        letter-spacing: 1px;
+        color: white;
+        @include heading-font;
+        &.active,
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 992px) {
+  #mainNav {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+    -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
+    transition: padding-top 0.3s, padding-bottom 0.3s;
+    text-align: center;
+    border: none;
+    background-color: rgba(33, 37, 41, 0.8);
+    box-shadow: 0 1px 5px black;
+    .navbar-brand {
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+      .sml-logo {
+        width: 250px;
+        transition: all 0.3s;
+      }
+    }
+    .navbar-nav {
+      .nav-item {
+        .nav-link {
+          padding: 1.1em 1em !important;
+        }
+      }
+    }
+    &.navbar-shrink {
+      padding-top: 0;
+      padding-bottom: 0;
+      background-color: $gray-900;
+      .navbar-brand {
+        padding: 12px 0;
+        .sml-logo {
+          width: 200px;
+        }
+      }
+    }
+  }
+}

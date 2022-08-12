@@ -2,7 +2,7 @@
 header.masthead {
   text-align: center;
   color: white;
-  background-image: url("../img/fondo1.webp");
+  background-image: url('../img/fondo1.webp');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: left;
@@ -14,11 +14,13 @@ header.masthead {
   .intro-text {
     padding-top: 150px;
     padding-bottom: 100px;
+    max-width: 50rem;
+    margin: 0 auto;
     .intro-lead-in {
       font-size: 30px;
       line-height: 36px;
       padding: 25px 0px;
-      font-family: "Oleo Script";
+      font-family: 'Oleo Script';
     }
     .intro-heading {
       h1 {
@@ -47,7 +49,7 @@ header.masthead {
           font-size: 75px;
           font-weight: 700;
           line-height: 75px;
-          margin-bottom: 50px;
+          // margin-bottom: 50px;
         }
       }
     }

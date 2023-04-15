@@ -1,6 +1,6 @@
 // Styling for the team section
 
-#team {
+#nosotros {
   h4 {
     margin-bottom: 15px;
     font-size: 18px;
@@ -21,29 +21,28 @@
   a {
     text-decoration: none;
   }
-  .iframe-container{
+  .iframe-container {
     display: flex;
     justify-content: center;
     align-items: center;
-  iframe {
-    width: 300px;
-    height: 300px;
+    iframe {
+      width: 300px;
+      height: 300px;
+    }
   }
-}
 }
 
 @media (min-width: 576px) {
-  #team {
-    .iframe-container{
+  #nosotros {
+    .iframe-container {
       display: none;
     }
   }
 }
 
-
 @media (min-width: 992px) {
-  #team {
-    .iframe-container{
+  #nosotros {
+    .iframe-container {
       display: flex;
       iframe {
         width: 350px;

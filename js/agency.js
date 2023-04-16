@@ -60,6 +60,14 @@
   });
 })(jQuery); // End of use strict
 
+const arrowFunctions = (element, { left, right }) => {
+  if (element.key === 'ArrowLeft') {
+    left();
+  } else if (element.key === 'ArrowRight') {
+    right();
+  }
+};
+
 const carouselCartelDeObra = document.querySelector('#carouselCartelDeObra');
 const carouselCercoDeObra = document.querySelector('#carouselCercoDeObra');
 
@@ -77,7 +85,6 @@ const galleryObserver = new IntersectionObserver(
       const [carouselControlPrev, carouselControlNext] = galleryOnFocus.target.querySelectorAll(
         '.carousel-control-prev, .carousel-control-next'
       );
-      console.log(carouselControlNext);
       if (currentGalleryControlFunction) {
         document.removeEventListener('keydown', currentGalleryControlFunction);
       }
@@ -102,23 +109,6 @@ const galleryObserver = new IntersectionObserver(
     threshold: 0.7,
   }
 );
-
-// const observerCercoDeObra = new IntersectionObserver((entries) => {
-//   const entry = entries[0];
-//   if (entry.isIntersecting) {
-//     // Enable keyboard events for carouselCercoDeObra
-//     carouselCercoDeObra.addEventListener('keydown', (e) => {
-//       if (e.code === 'ArrowLeft') {
-//         carouselCercoDeObra.carousel('prev');
-//       } else if (e.code === 'ArrowRight') {
-//         carouselCercoDeObra.carousel('next');
-//       }
-//     });
-//   } else {
-//     // Disable keyboard events for carouselCercoDeObra
-//     carouselCercoDeObra.removeEventListener('keydown', null);
-//   }
-// });
 
 galleryObserver.observe(carouselCartelDeObra);
 galleryObserver.observe(carouselCercoDeObra);
@@ -158,6 +148,28 @@ const gallery = (id) => {
       showSlides(++slideIndex);
     }
   });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const slideshow = document.getElementById(id).querySelector('.slidesContainer');
+  slideshow.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+  slideshow.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleGesture();
+  });
+
+  function handleGesture() {
+    const gestureZone = document.getElementById(id).querySelector('.slidesContainer');
+    if (touchEndX < touchStartX) {
+      // swiped left
+      showSlides(++slideIndex);
+    } else if (touchEndX > touchStartX) {
+      // swiped right
+      showSlides(--slideIndex);
+    }
+  }
 
   const thumbnails = document.getElementById(id).querySelectorAll('.demo');
 

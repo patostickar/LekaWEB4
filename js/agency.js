@@ -1,6 +1,6 @@
 // jQuerry
 (function ($) {
-  'use strict'; // Start of use strict
+  ('use strict'); // Start of use strict
 
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
@@ -48,15 +48,6 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
-  // Focus on Carousel when on screen
-  // $(window).on("activate.bs.scrollspy", function(e, obj) {
-  //   if ($(obj.relatedTarget).find(".carousel-control-prev")) {
-  //     $(obj.relatedTarget)
-  //       .find(".carousel-control-prev")
-  //       .focus();
-  //   }
-  // });
-
   // Lazy load Modal pictures
   $('.modal').on('show.bs.modal', function (e) {
     let modalToOpen = e.relatedTarget.getAttribute('href');
@@ -68,6 +59,69 @@
       });
   });
 })(jQuery); // End of use strict
+
+const carouselCartelDeObra = document.querySelector('#carouselCartelDeObra');
+const carouselCercoDeObra = document.querySelector('#carouselCercoDeObra');
+
+let currentGalleryControlFunction = null;
+
+const galleryObserver = new IntersectionObserver(
+  (galleries) => {
+    let galleryOnFocus = null;
+    galleries.forEach((gallery) => {
+      if (gallery.isIntersecting) {
+        galleryOnFocus = gallery;
+      }
+    });
+    if (galleryOnFocus) {
+      const [carouselControlPrev, carouselControlNext] = galleryOnFocus.target.querySelectorAll(
+        '.carousel-control-prev, .carousel-control-next'
+      );
+      console.log(carouselControlNext);
+      if (currentGalleryControlFunction) {
+        document.removeEventListener('keydown', currentGalleryControlFunction);
+      }
+      currentGalleryControlFunction = function (e) {
+        if (e.key === 'ArrowLeft') {
+          carouselControlPrev.click();
+        } else if (e.key === 'ArrowRight') {
+          carouselControlNext.click();
+        }
+      };
+      document.addEventListener('keydown', currentGalleryControlFunction);
+    } else {
+      if (currentGalleryControlFunction) {
+        document.removeEventListener('keydown', currentGalleryControlFunction);
+        currentGalleryControlFunction = null;
+      }
+    }
+  },
+  {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.7,
+  }
+);
+
+// const observerCercoDeObra = new IntersectionObserver((entries) => {
+//   const entry = entries[0];
+//   if (entry.isIntersecting) {
+//     // Enable keyboard events for carouselCercoDeObra
+//     carouselCercoDeObra.addEventListener('keydown', (e) => {
+//       if (e.code === 'ArrowLeft') {
+//         carouselCercoDeObra.carousel('prev');
+//       } else if (e.code === 'ArrowRight') {
+//         carouselCercoDeObra.carousel('next');
+//       }
+//     });
+//   } else {
+//     // Disable keyboard events for carouselCercoDeObra
+//     carouselCercoDeObra.removeEventListener('keydown', null);
+//   }
+// });
+
+galleryObserver.observe(carouselCartelDeObra);
+galleryObserver.observe(carouselCercoDeObra);
 
 // Change AOS to fade-down when screen is < 768px
 
@@ -89,12 +143,21 @@ const gallery = (id) => {
   let slideIndex = 1;
   showSlides(slideIndex);
 
-  document
+  const [carouselControlNext, carouselControlPrev] = document
     .getElementById(id)
-    .querySelector('.carousel-control-prev')
-    .addEventListener('click', function () {
-      showSlides((slideIndex += -1));
-    });
+    .querySelectorAll('.carousel-control-next, .carousel-control-prev');
+  carouselControlPrev.addEventListener('click', () => showSlides(--slideIndex));
+  carouselControlNext.addEventListener('click', () => showSlides(++slideIndex));
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') {
+      // left arrow
+      showSlides(--slideIndex);
+    } else if (e.key === 'ArrowRight') {
+      // right arrow
+      showSlides(++slideIndex);
+    }
+  });
 
   const thumbnails = document.getElementById(id).querySelectorAll('.demo');
 
@@ -104,17 +167,10 @@ const gallery = (id) => {
     })
   );
 
-  document
-    .getElementById(id)
-    .querySelector('.carousel-control-next')
-    .addEventListener('click', function () {
-      showSlides((slideIndex += 1));
-    });
-
   function showSlides(n) {
     let i;
-    let slides = document.getElementById(id).getElementsByClassName('mySlides');
-    let dots = document.getElementById(id).getElementsByClassName('demo');
+    const slides = document.getElementById(id).getElementsByClassName('mySlides');
+    const dots = document.getElementById(id).getElementsByClassName('demo');
     // let captionText = document
     //   .getElementById(id)
     //   .getElementsByClassName("caption-text")[0];

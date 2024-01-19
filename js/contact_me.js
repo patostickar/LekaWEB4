@@ -19,17 +19,23 @@ $(function () {
       }
       $this = $("#sendMessageButton");
       $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
-      $.ajax({
-        url: "../mail/contact_me.php",
-        type: "POST",
-        data: {
-          name: name,
-          phone: phone,
-          email: email,
-          message: message
-        },
-        cache: false,
-        success: function () {
+      Email.send({
+        SecureToken: "1891b8bd-2f38-485d-87cc-7eedace2c573",
+        To: 'lekapub@gmail.com',
+        From: "no-reply@lekapublicidad.com.ar",
+        Subject: `Mensaje vía Web de ${name}`,
+        Body: `<div style="width:100%; font:16px sans-serif;">
+                  Nombre:   ${name}<br>
+                  Teléfono: ${phone}<br>
+                  Mail:     ${email}<br><br>
+
+                  ${message}<br><br>
+
+                  ======================================<br>
+                  LEKA Publicidad
+              </div>`
+      }).then(
+        () => {
           // Success message
           $('#success').html("<div class='alert alert-success'>");
           $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -40,22 +46,20 @@ $(function () {
             .append('</div>');
           //clear all fields
           $('#contactForm').trigger("reset");
-        },
-        error: function () {
-          // Fail message
-          $('#success').html("<div class='alert alert-danger'>");
-          $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-            .append("</button>");
-          $('#success > .alert-danger').append($("<strong>").text("Lo sentimos " + firstName + ", el servidor no está respondiendo. Por favor intenta de nuevo más tarde."));
-          $('#success > .alert-danger').append('</div>');
-          //clear all fields
-          $('#contactForm').trigger("reset");
-        },
-        complete: function () {
-          setTimeout(function () {
-            $this.prop("disabled", false); // Re-enable submit button when AJAX call is complete
-          }, 1000);
         }
+      ).catch(() => {
+        // Fail message
+        $('#success').html("<div class='alert alert-danger'>");
+        $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+          .append("</button>");
+        $('#success > .alert-danger').append($("<strong>").text("Lo sentimos " + firstName + ", el servidor no está respondiendo. Por favor intenta de nuevo más tarde."));
+        $('#success > .alert-danger').append('</div>');
+        //clear all fields
+        $('#contactForm').trigger("reset");
+      }).finally(() => {
+        setTimeout(function () {
+          $this.prop("disabled", false); // Re-enable submit button when AJAX call is complete
+        }, 1000);
       });
     },
     filter: function () {

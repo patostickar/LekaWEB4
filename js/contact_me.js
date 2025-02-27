@@ -23,7 +23,7 @@ $(function () {
 
       // Send email using EmailJS
       emailjs
-        .send("service_ec3t0wb", "template_g1qb1zn", {
+        .send("service_d3zmvo9", "template_g1qb1zn", {
           user_name: name,
           user_email: email,
           user_phone: phone,

@@ -1,5 +1,7 @@
 // Styling for the contact section
 #contact {
+  background-image: url("../img/contact-image-min4.webp");
+
   background-color: $gray-900;
 
   background-repeat: no-repeat;
@@ -136,8 +138,4 @@
       }
     }
   }
-}
-
-#contact.lazy-bg-loaded {
-  background-image: url("../img/contact-image-min4.webp");
 }

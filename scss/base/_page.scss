@@ -1,4 +1,12 @@
 // Global styling for this template
+html {
+  scroll-behavior: smooth;
+  
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   overflow-x: hidden;
   @include body-font;
